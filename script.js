@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var CappelloImpl = /** @class */ (function () {
-    function CappelloImpl(id, codprod, collezione, capo, modello, quantita, colore, prezzoivaesclusa, prezzoivainclusa, disponibile, saldo) {
+    function CappelloImpl(id, codprod, collezione, capo, modello, quantita, colore, prezzoIvaEsclusa, prezzoIvaInclusa, disponibile, saldo) {
         this.id = id;
         this.codprod = codprod;
         this.collezione = collezione;
@@ -43,16 +43,16 @@ var CappelloImpl = /** @class */ (function () {
         this.modello = modello;
         this.quantita = quantita;
         this.colore = colore;
-        this.prezzoivaesclusa = prezzoivaesclusa;
-        this.prezzoivainclusa = prezzoivainclusa;
+        this.prezzoIvaEsclusa = prezzoIvaEsclusa;
+        this.prezzoIvaInclusa = prezzoIvaInclusa;
         this.disponibile = disponibile;
         this.saldo = saldo;
     }
     CappelloImpl.prototype.getsaldocapo = function () {
-        return this.saldo * 0.01 * this.prezzoivainclusa;
+        return this.saldo * 0.01 * this.prezzoIvaInclusa;
     };
     CappelloImpl.prototype.getacquistocapo = function () {
-        return this.prezzoivainclusa - this.getsaldocapo();
+        return this.prezzoIvaInclusa - this.getsaldocapo();
     };
     return CappelloImpl;
 }());
@@ -63,14 +63,14 @@ function fetchCappelli() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("https://mocki.io/v1/765b2daf-41d5-4e94-a0d5-abd918f57b8f")];
+                    return [4 /*yield*/, fetch("https://61fb890c87801d0017a2c55c.mockapi.io/v1/metadata")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     cappelli = _a.sent();
                     cappelli.forEach(function (cappello) {
-                        var cappelloImpl = new CappelloImpl(cappello.id, cappello.codprod, cappello.collezione, cappello.capo, cappello.modello, cappello.quantita, cappello.colore, cappello.prezzoivaesclusa, cappello.prezzoivainclusa, cappello.disponibile, cappello.saldo);
+                        var cappelloImpl = new CappelloImpl(cappello.id, cappello.codprod, cappello.collezione, cappello.capo, cappello.modello, cappello.quantita, cappello.colore, cappello.prezzoIvaEsclusa, cappello.prezzoIvaInclusa, cappello.disponibile, cappello.saldo);
                         console.log(cappelloImpl);
                         console.log("Il prezzo dopo lo sconto é di: ", cappelloImpl.getacquistocapo().toFixed(2), "€");
                     });

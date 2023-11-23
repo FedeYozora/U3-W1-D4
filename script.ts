@@ -6,8 +6,8 @@ interface Cappello {
   modello: number;
   quantita: number;
   colore: string;
-  prezzoivaesclusa: number;
-  prezzoivainclusa: number;
+  prezzoIvaEsclusa: number;
+  prezzoIvaInclusa: number;
   disponibile: string;
   saldo: number;
 
@@ -23,8 +23,8 @@ class CappelloImpl implements Cappello {
   modello: number;
   quantita: number;
   colore: string;
-  prezzoivaesclusa: number;
-  prezzoivainclusa: number;
+  prezzoIvaEsclusa: number;
+  prezzoIvaInclusa: number;
   disponibile: string;
   saldo: number;
 
@@ -36,8 +36,8 @@ class CappelloImpl implements Cappello {
     modello: number,
     quantita: number,
     colore: string,
-    prezzoivaesclusa: number,
-    prezzoivainclusa: number,
+    prezzoIvaEsclusa: number,
+    prezzoIvaInclusa: number,
     disponibile: string,
     saldo: number
   ) {
@@ -48,24 +48,24 @@ class CappelloImpl implements Cappello {
     this.modello = modello;
     this.quantita = quantita;
     this.colore = colore;
-    this.prezzoivaesclusa = prezzoivaesclusa;
-    this.prezzoivainclusa = prezzoivainclusa;
+    this.prezzoIvaEsclusa = prezzoIvaEsclusa;
+    this.prezzoIvaInclusa = prezzoIvaInclusa;
     this.disponibile = disponibile;
     this.saldo = saldo;
   }
 
   getsaldocapo(): number {
-    return this.saldo * 0.01 * this.prezzoivainclusa;
+    return this.saldo * 0.01 * this.prezzoIvaInclusa;
   }
 
   getacquistocapo(): number {
-    return this.prezzoivainclusa - this.getsaldocapo();
+    return this.prezzoIvaInclusa - this.getsaldocapo();
   }
 }
 
 async function fetchCappelli() {
   try {
-    const response = await fetch("https://mocki.io/v1/765b2daf-41d5-4e94-a0d5-abd918f57b8f");
+    const response = await fetch("https://61fb890c87801d0017a2c55c.mockapi.io/v1/metadata");
     const cappelli: Cappello[] = await response.json();
 
     cappelli.forEach(cappello => {
@@ -77,8 +77,8 @@ async function fetchCappelli() {
         cappello.modello,
         cappello.quantita,
         cappello.colore,
-        cappello.prezzoivaesclusa,
-        cappello.prezzoivainclusa,
+        cappello.prezzoIvaEsclusa,
+        cappello.prezzoIvaInclusa,
         cappello.disponibile,
         cappello.saldo
       );
